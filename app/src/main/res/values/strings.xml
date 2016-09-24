@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">AddressBook</string>
+    <string name="app_name">Address Book</string>
+    <string name="name_field">Name</string>
+    <string name="phone_number_field">Phone Number</string>
+    <string name="email_address_field">E-Mail Address</string>
+    <string name="addresss_header">Address</string>
+    <string name="street_address_field">Street Address</string>
+    <string name="city_state_zip_field">City, State. Zip</string>
+    <string name="save_contact_button">Save Contact</string>
+    <string name="edit_contact_menu_item">Edit Contact</string>
+    <string name="delete_contact_menu_item">Delete Contact</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="delete_button">Delete</string>
+    <string name="action_add">Add A Contact</string>
 </resources>
