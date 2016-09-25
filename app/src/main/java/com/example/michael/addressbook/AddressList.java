@@ -14,6 +14,16 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+/**
+ * You need to:
+ * -Build Out EditContactItem activity to create a new contact
+ * -Build Intent to spawn EditContactItem activity
+ * -Pull Information from EditContactItem activity to add to listView
+ * -Build Save ContactList logic
+ * -Build Read ContactList logic
+ * -Build out delete contact item logic
+ * -Build out Edit Contact item logic
+ */
 public class AddressList extends AppCompatActivity {
     private ListView listView;
     private ArrayList<ContactItem> contactList;
