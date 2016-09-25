@@ -12,4 +12,5 @@
     <string name="cancel_button">Cancel</string>
     <string name="delete_button">Delete</string>
     <string name="action_add">Add A Contact</string>
+    <string name="title_activity_edit_contact_item">EditContactItem</string>
 </resources>
