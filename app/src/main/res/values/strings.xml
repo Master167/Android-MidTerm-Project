@@ -13,4 +13,5 @@
     <string name="delete_button">Delete</string>
     <string name="action_add">Add A Contact</string>
     <string name="title_activity_edit_contact_item">EditContactItem</string>
+    <string name="name_required_message">Contact Name is Required</string>
 </resources>
