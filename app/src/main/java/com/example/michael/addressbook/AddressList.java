@@ -9,17 +9,33 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class AddressList extends AppCompatActivity {
     private ListView listView;
-    private ArrayAdapter<ListView> listViewArrayAdapter;
+    private ArrayList<ContactItem> contactList;
+    private ArrayAdapter<ContactItem> contactsArrayAdapter;
     private Toolbar toolbar;
+    private String jsonFilename = "contacts.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_list);
+
+        // Define Toolbar
         toolbar = (Toolbar) findViewById(R.id.address_toolbar);
         setSupportActionBar(toolbar);
+
+        //Create Contact ListView
+        this.contactList = new ArrayList<ContactItem>();
+        loadContactList();
+        this.contactsArrayAdapter = new ArrayAdapter<ContactItem>(this, android.R.layout.simple_list_item_1, contactList);
+        this.listView = (ListView) findViewById(R.id.contact_listView);
+        this.listView.setAdapter(this.contactsArrayAdapter);
+        registerForContextMenu(this.listView);
+
+
     }
 
     @Override
@@ -33,9 +49,24 @@ public class AddressList extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_add) {
+            // Create Intent to call new activity to add contact
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+
+    private void saveContactList() {
+        Log.d("AddressList", "saveContactList is not defined");
+    }
+
+    private void loadContactList() {
+        Log.d("AddressList", "loadContactList is not defined");
     }
 }

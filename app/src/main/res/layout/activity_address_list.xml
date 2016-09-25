@@ -18,6 +18,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <ListView
+        android:id="@+id/contact_listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ListView>
