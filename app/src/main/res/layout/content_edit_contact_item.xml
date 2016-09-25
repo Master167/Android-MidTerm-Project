@@ -13,4 +13,8 @@
     tools:context="com.example.michael.addressbook.EditContactItem"
     tools:showIn="@layout/activity_edit_contact_item">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>

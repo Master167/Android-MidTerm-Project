@@ -1,34 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:id="@+id/activity_edit_contact_item"
     tools:context="com.example.michael.addressbook.EditContactItem">
 
-    <android.support.design.widget.AppBarLayout
+    <EditText
+        android:id="@+id/name_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:hint="@string/name_field"/>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <EditText
+        android:id="@+id/phone_number_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/phone_number_field"
+        android:layout_below="@+id/name_field"/>
 
-    </android.support.design.widget.AppBarLayout>
+    <EditText
+        android:id="@+id/email_address_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email_address_field"
+        android:layout_below="@id/phone_number_field"/>
 
-    <include layout="@layout/content_edit_contact_item" />
+    <TextView
+        android:id="@+id/address_header_edit_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:text="@string/addresss_header"
+        android:layout_below="@id/email_address_field"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/street_address_field"
+        android:background="@color/colorPrimaryDark"/>
+
+    <EditText
+        android:id="@+id/street_address_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/street_address_field"
+        android:layout_below="@id/address_header_edit_activity"/>
+
+    <EditText
+        android:id="@+id/city_state_zip_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/city_state_zip_field"
+        android:layout_below="@id/street_address_field"/>
+
+    <Button
+        android:id="@+id/save_contact_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_centerHorizontal="true"
+        android:text="@string/save_contact_button"
+        android:layout_below="@id/city_state_zip_field" />
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

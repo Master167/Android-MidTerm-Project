@@ -58,12 +58,10 @@ public class AddressList extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
     public void OnCreateContextMenu(ContextMenu menu, View viewObj, ContextMenu.ContextMenuInfo menuInfo) {
         getMenuInflater().inflate(R.menu.contact_list_context_menu, menu);
     }
 
-    @Override
     public boolean onContextMenuItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int index = adapterContextMenuInfo.position;
