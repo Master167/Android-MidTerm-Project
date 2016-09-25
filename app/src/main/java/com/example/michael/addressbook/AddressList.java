@@ -4,8 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -14,7 +17,7 @@ import java.util.ArrayList;
 public class AddressList extends AppCompatActivity {
     private ListView listView;
     private ArrayList<ContactItem> contactList;
-    private ArrayAdapter<ContactItem> contactsArrayAdapter;
+    private ContactArrayAdapter contactsArrayAdapter;
     private Toolbar toolbar;
     private String jsonFilename = "contacts.json";
 
@@ -30,11 +33,10 @@ public class AddressList extends AppCompatActivity {
         //Create Contact ListView
         this.contactList = new ArrayList<ContactItem>();
         loadContactList();
-        this.contactsArrayAdapter = new ArrayAdapter<ContactItem>(this, android.R.layout.simple_list_item_1, contactList);
+        this.contactsArrayAdapter = new ContactArrayAdapter(this, contactList);
         this.listView = (ListView) findViewById(R.id.contact_listView);
         this.listView.setAdapter(this.contactsArrayAdapter);
         registerForContextMenu(this.listView);
-
 
     }
 
@@ -54,6 +56,29 @@ public class AddressList extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void OnCreateContextMenu(ContextMenu menu, View viewObj, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.contact_list_context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextMenuItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = adapterContextMenuInfo.position;
+
+        switch (item.getItemId()) {
+            case R.id.edit_contact_menu_item:
+                // Make function call here to make intent to edit contact
+                return true;
+            case R.id.delete_contact_menu_item:
+                this.contactList.remove(index);
+                this.contactsArrayAdapter.notifyDataSetChanged();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     @Override
