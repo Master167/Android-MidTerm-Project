@@ -10,12 +10,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class EditContactItem extends AppCompatActivity {
-    TextView nameRequiredMessage;
-    EditText editName;
-    EditText editPhone;
-    EditText editEmail;
-    EditText editStreet;
-    EditText editCity;
+    private TextView nameRequiredMessage;
+    private EditText editName;
+    private EditText editPhone;
+    private EditText editEmail;
+    private EditText editStreet;
+    private EditText editCity;
+
+    public String EXTRA_CONTACT_KEY = "com.example.michael.addressbook";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

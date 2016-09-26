@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email_address_field"
-        android:layout_below="@id/phone_number_field"/>
+        android:layout_below="@+id/phone_number_field"/>
 
     <TextView
         android:id="@+id/address_header_edit_activity"
@@ -40,12 +40,12 @@
         android:layout_height="wrap_content"
         android:paddingTop="6dp"
         android:text="@string/addresss_header"
-        android:layout_below="@id/email_address_field"/>
+        android:layout_below="@+id/email_address_field"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_above="@id/street_address_field"
+        android:layout_above="@+id/street_address_field"
         android:background="@color/colorPrimaryDark"/>
 
     <EditText
@@ -53,14 +53,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/street_address_field"
-        android:layout_below="@id/address_header_edit_activity"/>
+        android:layout_below="@+id/address_header_edit_activity"/>
 
     <EditText
         android:id="@+id/city_state_zip_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/city_state_zip_field"
-        android:layout_below="@id/street_address_field"/>
+        android:layout_below="@+id/street_address_field"/>
 
     <Button
         android:id="@+id/save_contact_button"
@@ -68,6 +68,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/save_contact_button"
-        android:layout_below="@id/city_state_zip_field" />
+        android:layout_below="@+id/city_state_zip_field" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.michael.addressbook;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -61,7 +62,7 @@ public class AddressList extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_add) {
-            // Create Intent to call new activity to add contact
+            createNewContact();
             return true;
         }
 
@@ -92,7 +93,21 @@ public class AddressList extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+        saveContactList();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) {
+            return;
+        }
+
+        Bundle bundle = data.getExtras();
+    }
+
+    private void createNewContact() {
+        Intent intent = new Intent(AddressList.this, EditContactItem.class);
+        startActivityForResult(intent, 0);
     }
 
     private void saveContactList() {
@@ -102,4 +117,6 @@ public class AddressList extends AppCompatActivity {
     private void loadContactList() {
         Log.d("AddressList", "loadContactList is not defined");
     }
+
+
 }
