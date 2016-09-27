@@ -92,6 +92,7 @@ public class AddressList extends AppCompatActivity {
             case R.id.edit_contact_menu_item:
                 // Make function call here to make intent to edit contact
                 Log.d("AddressList", "Edit Item");
+                editContact(index);
                 return true;
             case R.id.delete_contact_menu_item:
                 this.contactList.remove(index);
@@ -115,8 +116,22 @@ public class AddressList extends AppCompatActivity {
         }
 
         ContactItem contactItem = (ContactItem) data.getExtras().get(EditContactItem.EXTRA_CONTACT_KEY);
-        contactList.add(contactItem);
+        int index = (int) data.getExtras().get(EditContactItem.EXTRA_INDEX_KEY);
+        if (index != -1) {
+            contactList.set(index, contactItem);
+        }
+        else {
+            contactList.add(contactItem);
+        }
         contactsArrayAdapter.notifyDataSetChanged();
+    }
+
+    private void editContact(int index) {
+        ContactItem item = contactList.get(index);
+        Intent intent = new Intent(AddressList.this, EditContactItem.class);
+        intent.putExtra(EditContactItem.EXTRA_CONTACT_KEY, item);
+        intent.putExtra(EditContactItem.EXTRA_INDEX_KEY, index);
+        startActivityForResult(intent, 0);
     }
 
     private void createNewContact() {

@@ -46,7 +46,7 @@ class ContactItem implements Serializable {
     }
 
     public String getStreetAddress() {
-        return this.name;
+        return this.streetAddress;
     }
 
     public void setStreetAddress(String newStreet) {

@@ -14,6 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class EditContactItem extends AppCompatActivity {
+
+    public static final String EXTRA_CONTACT_KEY = "com.example.michael.addressbook.contact";
+    public static final String EXTRA_INDEX_KEY = "com.example.michael.addressbook.index";
+
     private TextView nameRequiredMessage;
     private EditText editName;
     private EditText editPhone;
@@ -22,7 +26,7 @@ public class EditContactItem extends AppCompatActivity {
     private EditText editCity;
     private Button saveContactButton;
 
-    public static final String EXTRA_CONTACT_KEY = "com.example.michael.addressbook";
+    private int addressIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +60,28 @@ public class EditContactItem extends AppCompatActivity {
 
         // Clear nameRequired textView
         nameRequiredMessage.setText("");
+
+        loadContactInfo();
+    }
+
+    public void loadContactInfo() {
+        Intent intent = getIntent();
+        this.addressIndex = intent.getIntExtra(EXTRA_INDEX_KEY, -1);
+        if (intent.hasExtra(EXTRA_CONTACT_KEY)) {
+            ContactItem item = (ContactItem) intent.getExtras().get(EXTRA_CONTACT_KEY);
+            editName.setText(item.getName());
+            editPhone.setText(item.getPhoneNumber());
+            editEmail.setText(item.getEmailAddress());
+            editStreet.setText(item.getStreetAddress());
+            editCity.setText(item.getCityAddress());
+        }
     }
 
     public void saveContactInfo() {
         ContactItem contactItem = new ContactItem(editName.getText().toString(), editPhone.getText().toString(), editEmail.getText().toString(), editStreet.getText().toString(), editCity.getText().toString());
         Intent intent = new Intent();
         intent.putExtra(EXTRA_CONTACT_KEY, contactItem);
+        intent.putExtra(EXTRA_INDEX_KEY, addressIndex);
         setResult(RESULT_OK, intent);
         finish();
     }
