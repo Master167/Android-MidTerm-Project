@@ -18,7 +18,6 @@ import java.util.ArrayList;
 /**
  * You need to:
  * -Build Out EditContactItem activity to create a new contact
- * -Build Intent to spawn EditContactItem activity
  * -Pull Information from EditContactItem activity to add to listView
  * -Build Save ContactList logic
  * -Build Read ContactList logic
@@ -48,6 +47,16 @@ public class AddressList extends AppCompatActivity {
         this.listView = (ListView) findViewById(R.id.contact_listView);
         this.listView.setAdapter(this.contactsArrayAdapter);
         registerForContextMenu(this.listView);
+
+        ContactItem item = new ContactItem("Name", "", "", "", "");
+        ContactItem item1 = new ContactItem("Name1", "", "", "", "");
+        ContactItem item2 = new ContactItem("Name2", "", "", "", "");
+        ContactItem item3 = new ContactItem("Name3", "", "", "", "");
+        contactList.add(item);
+        contactList.add(item1);
+        contactList.add(item2);
+        contactList.add(item3);
+        contactsArrayAdapter.notifyDataSetChanged();
 
     }
 
@@ -102,7 +111,9 @@ public class AddressList extends AppCompatActivity {
             return;
         }
 
-        Bundle bundle = data.getExtras();
+        ContactItem contactItem = (ContactItem) data.getExtras().get(EditContactItem.EXTRA_CONTACT_KEY);
+        contactList.add(contactItem);
+        contactsArrayAdapter.notifyDataSetChanged();
     }
 
     private void createNewContact() {

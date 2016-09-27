@@ -1,10 +1,12 @@
 package com.example.michael.addressbook;
 
+import java.io.Serializable;
+
 /**
  * Created by Michael on 9/25/2016.
  */
 
-class ContactItem {
+class ContactItem implements Serializable {
     private String name;
     private String phoneNumber;
     private String emailAddress;

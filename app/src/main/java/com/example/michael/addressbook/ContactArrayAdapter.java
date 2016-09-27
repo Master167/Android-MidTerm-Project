@@ -23,7 +23,7 @@ class ContactArrayAdapter extends ArrayAdapter<ContactItem> {
     public View getView(int index, View convertView, ViewGroup group) {
         ContactItem item = getItem(index);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate((R.layout.contact_item), group);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.contact_item, group, false);
         }
         TextView nameTextView = (TextView) convertView.findViewById(R.id.name_textView);
         nameTextView.setText(item.getName());
