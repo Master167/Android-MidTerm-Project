@@ -78,17 +78,20 @@ public class AddressList extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void OnCreateContextMenu(ContextMenu menu, View viewObj, ContextMenu.ContextMenuInfo menuInfo) {
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         getMenuInflater().inflate(R.menu.contact_list_context_menu, menu);
     }
 
-    public boolean onContextMenuItemSelected(MenuItem item) {
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int index = adapterContextMenuInfo.position;
 
         switch (item.getItemId()) {
             case R.id.edit_contact_menu_item:
                 // Make function call here to make intent to edit contact
+                Log.d("AddressList", "Edit Item");
                 return true;
             case R.id.delete_contact_menu_item:
                 this.contactList.remove(index);
