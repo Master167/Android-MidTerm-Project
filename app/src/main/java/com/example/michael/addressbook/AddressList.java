@@ -1,7 +1,9 @@
 package com.example.michael.addressbook;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -30,8 +32,7 @@ import java.util.ArrayList;
 
 /**
  * You need to:
- * -Build Save ContactList logic
- * -Build Read ContactList logic
+ * -Change from Long-Press to press for context menu pop
  */
 public class AddressList extends AppCompatActivity {
     private ListView listView;
@@ -39,6 +40,7 @@ public class AddressList extends AppCompatActivity {
     private ContactArrayAdapter contactsArrayAdapter;
     private Toolbar toolbar;
     private String jsonFilename = "contacts.json";
+    public static int indexSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,15 +88,14 @@ public class AddressList extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int index = adapterContextMenuInfo.position;
+        this.indexSelected = adapterContextMenuInfo.position;
 
         switch (item.getItemId()) {
             case R.id.edit_contact_menu_item:
-                editContact(index);
+                editContact();
                 return true;
             case R.id.delete_contact_menu_item:
-                this.contactList.remove(index);
-                this.contactsArrayAdapter.notifyDataSetChanged();
+                showDeleteAlert();
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -124,11 +125,11 @@ public class AddressList extends AppCompatActivity {
         contactsArrayAdapter.notifyDataSetChanged();
     }
 
-    private void editContact(int index) {
-        ContactItem item = contactList.get(index);
+    private void editContact() {
+        ContactItem item = contactList.get(indexSelected);
         Intent intent = new Intent(AddressList.this, EditContactItem.class);
         intent.putExtra(EditContactItem.EXTRA_CONTACT_KEY, item);
-        intent.putExtra(EditContactItem.EXTRA_INDEX_KEY, index);
+        intent.putExtra(EditContactItem.EXTRA_INDEX_KEY, indexSelected);
         startActivityForResult(intent, 0);
     }
 
@@ -214,4 +215,25 @@ public class AddressList extends AppCompatActivity {
     }
 
 
+
+    private void showDeleteAlert() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.delete_confirmation_title);
+        alert.setMessage(R.string.delete_confirmation_message);
+        alert.setPositiveButton(R.string.delete_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                contactList.remove(indexSelected);
+                contactsArrayAdapter.notifyDataSetChanged();
+            }
+        });
+        alert.setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        alert.show();
+    }
 }

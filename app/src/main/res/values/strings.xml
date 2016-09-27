@@ -14,4 +14,6 @@
     <string name="action_add">Add A Contact</string>
     <string name="title_activity_edit_contact_item">EditContactItem</string>
     <string name="name_required_message">Contact Name is Required</string>
+    <string name="delete_confirmation_title">Are you sure?</string>
+    <string name="delete_confirmation_message">This will permanently delete the contact.</string>
 </resources>
