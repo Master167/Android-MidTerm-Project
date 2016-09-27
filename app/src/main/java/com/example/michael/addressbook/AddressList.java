@@ -13,10 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -30,10 +28,6 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 
-/**
- * You need to:
- * -Change from Long-Press to press for context menu pop
- */
 public class AddressList extends AppCompatActivity {
     private ListView listView;
     private ArrayList<ContactItem> contactList;
@@ -56,7 +50,14 @@ public class AddressList extends AppCompatActivity {
         this.contactsArrayAdapter = new ContactArrayAdapter(this, contactList);
         this.listView = (ListView) findViewById(R.id.contact_listView);
         this.listView.setAdapter(this.contactsArrayAdapter);
+        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openContextMenu(view);
+            }
+        });
         registerForContextMenu(this.listView);
+
 
         // Load Contacts
         loadContactList();
@@ -156,7 +157,6 @@ public class AddressList extends AppCompatActivity {
             }
             OutputStream out = openFileOutput(jsonFilename, Context.MODE_PRIVATE);
             writer = new OutputStreamWriter(out);
-            Log.d("AddressListSave", json.toString());
             writer.write(json.toString());
             writer.close();
         }
@@ -179,7 +179,6 @@ public class AddressList extends AppCompatActivity {
             while ((line = reader.readLine()) != null) {
                 jsonString.append(line);
             }
-            Log.d("AddressListLoad", jsonString.toString());
             JSONObject json = (JSONObject) new JSONTokener(jsonString.toString()).nextValue();
 
             for(int i = 0; i < json.length(); i++) {
