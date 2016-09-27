@@ -21,6 +21,14 @@ class ContactItem implements Serializable {
         setCityAddress(city);
     }
 
+    public ContactItem() {
+        setName("");
+        setPhoneNumber("");
+        setEmailAddress("");
+        setStreetAddress("");
+        setCityAddress("");
+    }
+
     public String getName() {
         return this.name;
     }
